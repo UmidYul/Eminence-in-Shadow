@@ -4,11 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="shortcut icon" href="/images/logo/logo1.webp" type="image/x-icon">
+    <title>Eminece In Shadow</title>
 </head>
 
 <body>
-
+    <div class="preloader-field">
+        <img src="/images/preloader/preloader.gif">
+    </div>
 </body>
+<script>
+    window.addEventListener('load', function () {
+        var preloader = document.getElementsByClassName('preloader-field')[0];
+        var images = document.querySelectorAll('body img');
+        var loadedImages = 0;
+
+        function imageLoaded() {
+            loadedImages++;
+            if (loadedImages === images.length) {
+                preloader.style.display = 'none';
+            }
+        }
+
+        images.forEach(function (image) {
+            if (image.complete) {
+                imageLoaded();
+            } else {
+                image.addEventListener('load', imageLoaded);
+            }
+        });
+    });
+</script>
 
 </html>
